@@ -14,7 +14,7 @@ class SignupController extends Controller
 
     public function handleSignUp(Request $request)
     {
-        // Validation des données
+    
         $validated = $request->validate([
             'username' => 'required|string|max:100',
             'email' => 'required|email|unique:users,email',
@@ -23,10 +23,10 @@ class SignupController extends Controller
             'specialty' => 'required|in:doctorant,doctorante',
         ]);
 
-        // Affectation de l'équipe en fonction du domaine
+
         $team = $this->assignTeam($validated['domain']);
 
-        // Création de l'utilisateur
+        
         User::create([
             'user_name' => $validated['username'],
             'email' => $validated['email'],

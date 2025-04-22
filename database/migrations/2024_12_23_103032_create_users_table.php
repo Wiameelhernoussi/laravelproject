@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,9 +13,9 @@ class CreateUsersTable extends Migration
             $table->string('user_name', 100);
             $table->string('email', 100)->unique();
             $table->string('password');
-            $table->string('domain', 255);
+            $table->string('domain', 255)->nullable();
             $table->string('team', 255);
-            $table->enum('specialty', ['doctorant', 'doctorante']);
+            $table->enum('specialty', ['doctorant', 'doctorante'])->nullable();
             $table->timestamps();
         });
     }
@@ -24,3 +25,4 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('users');
     }
 }
+?>

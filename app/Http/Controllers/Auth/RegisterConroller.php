@@ -10,7 +10,7 @@ class RegisterController extends Controller
 {
     public function handleSignUp(Request $request)
     {
-        // Validation des données
+        
         $validated = $request->validate([
             'user_name' => 'required|string|max:100',
             'email' => 'required|email|unique:users,email',
@@ -20,7 +20,7 @@ class RegisterController extends Controller
             'specialty' => 'required|in:doctorant,doctorante',
         ]);
 
-        // Enregistrement dans la base de données
+        
         User::create([
             'user_name' => $validated['user_name'],
             'email' => $validated['email'],
@@ -30,7 +30,7 @@ class RegisterController extends Controller
             'specialty' => $validated['specialty'],
         ]);
 
-        // Redirection avec succès
+        
         return redirect()->back()->with('success', 'User registered successfully!');
     }
 }

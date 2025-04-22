@@ -11,7 +11,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'user_name', 'email', 'password', 'team', 'specialty',
+        'user_name', 'email', 'password', 'team', 'specialty', 'domain',
     ];
 
     protected $hidden = [
@@ -22,6 +22,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function researches()
+    {
+        return $this->hasMany(Research::class);
+    }
     // Définir la relation avec le modèle Domain
     public function domains()
     {

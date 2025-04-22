@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers; // Change le namespace si tu as une structure spécifique
+namespace App\Http\Controllers; 
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,20 +10,20 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    // Méthode pour afficher le formulaire de signup
+    
     public function showSignUpForm()
     {
-        return view('auth.signup');  // Remplace par la vue correcte si nécessaire
+        return view('auth.signup');  
     }
 
-    // Méthode pour traiter le formulaire de signup
+    
     public function handleSignUp(Request $request)
     {
-        // Validation des données
+        
         $validated = $request->validate([
             'username' => 'required|string|max:100',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',  // Ajout de 'confirmed' pour validation du mot de passe
+            'password' => 'required|string|min:8|confirmed',  
             'domain' => 'required|string|max:255',
             'team' => 'required|string|max:255',
             'specialty' => 'required|in:doctorant,doctorante',
@@ -32,7 +32,7 @@ class AuthController extends Controller
             'email.unique' => 'Cet e-mail est déjà utilisé.',
         ]);
 
-        // Création de l'utilisateur
+        
         User::create([
             'user_name' => $validated['username'],
             'email' => $validated['email'],
@@ -42,7 +42,7 @@ class AuthController extends Controller
             'specialty' => $validated['specialty'],
         ]);
 
-        // Redirection ou réponse
+        
         return redirect()->route('signin')->with('success', 'Votre compte a été créé avec succès !');
     }
     public function showSignInForm()
@@ -52,14 +52,14 @@ class AuthController extends Controller
 
     public function handleSignIn(Request $request)
     {
-        // Validation et logique de connexion ici
+        
     }
     public function logout(Request $request)
     {
-        // Clear session data
+        
         $request->session()->flush();
 
-        // Redirect to login page
+        
         return redirect()->route('signin');
     }
 }

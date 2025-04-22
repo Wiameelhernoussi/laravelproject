@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +20,7 @@
 
     <div class="container">
         <div class="profile-header">
-            <h3>{{ $user->user_name }}</h3>
+            <h3>{{ $user->name }}</h3>
             <div class="profile-info">
                 <p><strong>Email:</strong> {{ $user->email }}</p>
                 <p><strong>Domain:</strong> {{ $user->domain }}</p>
@@ -51,7 +52,7 @@
 
         <div class="research-list">
             <h3>Your Research</h3>
-            <table class="table">
+            <table>
                 <thead>
                     <tr>
                         <th>Title</th>

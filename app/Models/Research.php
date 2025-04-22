@@ -10,7 +10,7 @@ class Research extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'description', 'user_id', // Ajoutez d'autres champs nécessaires
+        'title', 'description', 'user_id', 'file_path'
     ];
 
     public function user()
@@ -18,3 +18,4 @@ class Research extends Model
         return $this->belongsTo(User::class);
     }
 }
+?>

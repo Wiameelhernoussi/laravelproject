@@ -10,10 +10,10 @@ class Domain extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'user_id', // Ajoutez d'autres champs nécessaires
+        'name', 'user_id', 
     ];
+    
 
-    // Définir la relation inverse avec le modèle User
     public function user()
     {
         return $this->belongsTo(User::class);

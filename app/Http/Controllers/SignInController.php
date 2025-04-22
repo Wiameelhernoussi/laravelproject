@@ -1,29 +1,45 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ExistingAuthController extends Controller
+class SignInController extends Controller
 {
-    public function showSignInForm()
+    public function showForm()
     {
-        return view('signin'); // Assure-toi que 'signin' correspond au fichier Blade existant.
+        return view('sign-in');
     }
 
-    public function handleSignIn(Request $request)
+    public function signIn(Request $request)
     {
-        $request->validate([
+        
+        $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|string|min:8',
         ]);
 
-        if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->intended('/home'); // Remplace '/home' par la route que tu souhaites.
+        
+        if (Auth::attempt($credentials)) {
+            
+            $request->session()->regenerate();
+            return redirect()->intended('home');
         }
 
-        return back()->withErrors(['email' => 'Invalid email or password.']);
+       
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }
 ?>

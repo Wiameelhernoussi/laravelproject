@@ -1,5 +1,5 @@
 <?php
-// filepath: /C:/xampp/htdocs/laravel/my-project/database/migrations/2025_01_12_004542_drop_users_table.php
+
 
 
 use Illuminate\Database\Migrations\Migration;

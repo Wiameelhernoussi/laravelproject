@@ -8,10 +8,10 @@ class AddColumnsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('user_name', 100)->after('id'); // Ajout de la colonne user_name
-            $table->string('domain', 255)->after('password'); // Ajout de la colonne domain
-            $table->string('team', 255)->after('domain'); // Ajout de la colonne team
-            $table->enum('specialty', ['doctorant', 'doctorante'])->after('team'); // Ajout de la colonne specialty
+            $table->string('user_name', 100)->after('id'); 
+            $table->string('domain', 255)->after('password'); 
+            $table->string('team', 255)->after('domain'); 
+            $table->enum('specialty', ['doctorant', 'doctorante'])->after('team'); 
         });
     }
 

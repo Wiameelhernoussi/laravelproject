@@ -1,3 +1,4 @@
+2025_01_12_185506_create_researches_table.php
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -13,6 +14,7 @@ class CreateResearchesTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('file_path');
             $table->timestamps();
         });
     }
